@@ -4,7 +4,9 @@ import ErrorPage from "./pages/ErrorPage";
 import RootLayout from "./pages/RootLayout";
 import ArticlesPage, { loader as ArticlesLoader } from "./pages/ArticlesPage";
 import ArticleDetailPage from "./pages/ArticleDetailPage";
-import NewArticlePage from "./pages/NewArticlePage";
+import NewArticlePage, {
+  action as NewArticleAction,
+} from "./pages/NewArticlePage";
 import EditArticlePage from "./pages/EditArticlePage";
 import ArticlesRootLayout from "./pages/ArticleRootLayout";
 
@@ -27,10 +29,7 @@ const router = createBrowserRouter([
           {
             path: "new",
             element: <NewArticlePage />,
-            action: (request) => {
-              console.log(request.request);
-              console.log(request.request.body);
-            },
+            action: NewArticleAction,
           },
           { path: ":articleId", element: <ArticleDetailPage /> },
           { path: ":articleId/edit", element: <EditArticlePage /> },

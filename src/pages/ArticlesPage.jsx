@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Await, useLoaderData } from "react-router-dom";
+import { Link, Await, useLoaderData } from "react-router-dom";
 
 function ArticlesPage() {
   const posts = useLoaderData();
@@ -10,6 +10,7 @@ function ArticlesPage() {
 
   return (
     <div>
+      <Link to={"new"}>New</Link>
       <p>ArticlesPage</p>
       <Suspense fallback={<p>Loading...</p>}>
         <Await resolve={posts}>
