@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import RootLayout from "./pages/RootLayout";
-import ArticlesPage from "./pages/ArticlesPage";
+import ArticlesPage, { loader as ArticlesLoader } from "./pages/ArticlesPage";
 import ArticleDetailPage from "./pages/ArticleDetailPage";
 import NewArticlePage from "./pages/NewArticlePage";
 import EditArticlePage from "./pages/EditArticlePage";
@@ -19,8 +19,19 @@ const router = createBrowserRouter([
         path: "articles",
         element: <ArticlesRootLayout />,
         children: [
-          { path: "", element: <ArticlesPage /> },
-          { path: "new", element: <NewArticlePage /> },
+          {
+            index: true,
+            element: <ArticlesPage />,
+            loader: ArticlesLoader,
+          },
+          {
+            path: "new",
+            element: <NewArticlePage />,
+            action: (request) => {
+              console.log(request.request);
+              console.log(request.request.body);
+            },
+          },
           { path: ":articleId", element: <ArticleDetailPage /> },
           { path: ":articleId/edit", element: <EditArticlePage /> },
         ],
