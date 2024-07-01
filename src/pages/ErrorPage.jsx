@@ -6,7 +6,7 @@ function ErrorPage() {
   let message = "오류 발생";
 
   if (error.status === 500) {
-    message = JSON.parse(error.data).message;
+    message = error.data.message;
   }
   if (error.status === 404) {
     message = "잘못된 주소";

@@ -3,7 +3,9 @@ import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import RootLayout from "./pages/RootLayout";
 import ArticlesPage, { loader as ArticlesLoader } from "./pages/ArticlesPage";
-import ArticleDetailPage from "./pages/ArticleDetailPage";
+import ArticleDetailPage, {
+  loader as ArticleDetailLoader,
+} from "./pages/ArticleDetailPage";
 import NewArticlePage, {
   action as NewArticleAction,
 } from "./pages/NewArticlePage";
@@ -27,11 +29,15 @@ const router = createBrowserRouter([
             loader: ArticlesLoader,
           },
           {
+            path: ":articleId",
+            element: <ArticleDetailPage />,
+            loader: ArticleDetailLoader,
+          },
+          {
             path: "new",
             element: <NewArticlePage />,
             action: NewArticleAction,
           },
-          { path: ":articleId", element: <ArticleDetailPage /> },
           { path: ":articleId/edit", element: <EditArticlePage /> },
         ],
       },
